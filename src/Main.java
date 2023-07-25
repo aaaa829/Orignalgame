@@ -8,31 +8,28 @@ public class Main {
 		String name = s.nextLine();
 		Pleyer p = new Pleyer(name);
 		Item item = new Item();
-		int result;
+
 		System.out.print("1:ゲームスタート、2:ゲームを終了する >");
 		while (true) {
 			int select = s.nextInt();
 			switch (select) {
-			case 1: {
+			case 1:
 				System.out.println("これからダンジョンを探索して、報酬を手に入れよう");
-				Stage a =new Stage(p,item);
+				Stage a = new Stage(p, item);
 				//Resulクラス呼び出し
-				result = item.result();
-				for(int i =0; i <item.itemi.size();i++) {
-					System.out.println(/*item.itemi.get(i)+"："+*/item.item.get(i));
-				}
+				int result = item.result();
+				System.out.println(result);
+
 				return;
-			}
-			case 2: {
+
+			case 2:
 				return;
-			}
-			default: {
+
+			default:
 				System.out.println("1か2を入力してください >");
-			}
+
 			}
 		}
-		
-
 
 	}
 

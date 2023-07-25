@@ -44,7 +44,7 @@ public class Item {
 		int result = 0;
 		if (item.size() != 0) {
 			for (int i : item) {
-				result += item.get(i);
+				result += i;
 			}
 		}
 		return result;
