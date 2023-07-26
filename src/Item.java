@@ -1,49 +1,66 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Item {
 
-	int gold;
-	int silver;
-	int bronze;
-	int platinum;
-	List<Integer> item = new ArrayList<Integer>();
-	List<String> itemi = new ArrayList<String>();
-
+	Map<String,Integer> items = new HashMap<String,Integer>();
+	List<Integer> getItem = new ArrayList<Integer>();
+	
+	int goldCount;
+	int silverCount;
+	int bronzeCount;
+	int platinumCount;
+	int heatCount;
+	int bornCount;
+	
+	
 	public Item() {
-		this.platinum = 150;
-		this.gold = 100;
-		this.silver = 70;
-		this.bronze = 40;
+		items.put("銅",40);
+		items.put("銀",70);
+		items.put("金",100);
+		items.put("プラチナ",150);
+		items.put("骨",50);
+		items.put("心臓",1000);
+
+		this.goldCount = 0;
+		this.silverCount= 0;
+		this.bronzeCount= 0;
+		this.platinumCount= 0;
+		this.bornCount = 0;
+		this.heatCount = 0;
 	}
 
 	public void drop() {
+		System.out.println("お宝を見つけた！");
 		int r = new Random().nextInt(100);
 		if (r <= 50) {
-			item.add(this.bronze);
-			itemi.add("銅");
-			System.out.println("銅を手に入れた");
+			this.getItem.add(items.get("銅"));
+			this.bronzeCount++;
+			System.out.println("\n銅を手に入れた\n");
 		} else if (r >= 51 && r <= 80) {
-			item.add(this.silver);
-			itemi.add("銀");
-			System.out.println("銀を手に入れた");
+			this.getItem.add(items.get("銀"));
+			this.silverCount++;
+			System.out.println("\n銀を手に入れた\n");
 		} else if (r >= 81 && r <= 95) {
-			item.add(this.gold);
-			itemi.add("金");
-			System.out.println("金を手に入れた");
+			this.getItem.add(items.get("金"));
+			this.goldCount++;
+			System.out.println("\n金を手に入れた\n");
 		} else {
-			item.add(this.platinum);
-			itemi.add("プラチナ");
-			System.out.println("プラチナを手に入れた");
+			this.getItem.add(items.get("プラチナ"));
+			this.platinumCount++;
+			System.out.println("\nプラチナを手に入れた\n");
 		}
 
 	}
+	
 
 	public int result() {
 		int result = 0;
-		if (item.size() != 0) {
-			for (int i : item) {
+		if (this.getItem.size() != 0) {
+			for (int i : this.getItem) {
 				result += i;
 			}
 		}

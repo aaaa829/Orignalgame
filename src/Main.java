@@ -18,8 +18,17 @@ public class Main {
 				Stage a = new Stage(p, item);
 				//Resulクラス呼び出し
 				int result = item.result();
-				System.out.println(result);
-
+				System.out.println("\n手に入れたものを換金します。");
+				for(String key : item.items.keySet()) {
+					int value = item.items.get(key);
+					System.out.println(key+" ・・・￥"+value);
+					
+				}
+//				System.out.println("銅"+"    ×"+item.bronzeCount);
+//				System.out.println("銀　　　　×"+item.silverCount);
+//				System.out.println("金　　　　×"+item.goldCount);
+//				System.out.println("プラチナ　×"+item.platinumCount);
+				System.out.println("今回の報酬額は￥"+result+"でした");
 				return;
 
 			case 2:

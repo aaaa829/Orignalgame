@@ -4,7 +4,6 @@ public class Creature {
 	int attack;
 	int hp;
 	int defense;
-	int speed;
 	
 	public void dead() {
 		if(this.hp == 0) {
