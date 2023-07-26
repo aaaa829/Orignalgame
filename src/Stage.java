@@ -62,7 +62,7 @@ public class Stage {
 
 	public static boolean select(boolean b, Pleyer p) {
 		while (true) {
-			System.out.printf("1:探索を続ける　2:探索をやめる 3:回復する(MPを消費) 4:%sのステータスを表示する>", p.name);
+			System.out.printf("\n1:探索を続ける　2:探索をやめる 3:回復する(MPを消費) 4:%sのステータスを表示する>", p.name);
 			int select = new Scanner(System.in).nextInt();
 			switch (select) {
 			case 1:

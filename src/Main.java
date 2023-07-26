@@ -28,7 +28,7 @@ public class Main {
 //				System.out.println("銀　　　　×"+item.silverCount);
 //				System.out.println("金　　　　×"+item.goldCount);
 //				System.out.println("プラチナ　×"+item.platinumCount);
-				System.out.println("今回の報酬額は￥"+result+"でした");
+				System.out.println("\n今回の報酬額は￥"+result+"でした");
 				return;
 
 			case 2:

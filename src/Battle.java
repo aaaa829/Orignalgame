@@ -17,17 +17,29 @@ public class Battle {
 				damage = damage(p.attack, e.defense) + (ran = r.nextInt(10)+1);
 				e.hp -= damage;
 				System.out.printf("\n%sは%sに%dのダメージを与えた\n", p.name, e.name, damage);
+				if(e.hp > 0) {
+					//攻撃受けた時
+					e.attack(e,p);
+				}
 				break;
 			}
 			case 2: {
 				//回復時
 				p = p.recovery(p);
+				if(e.hp > 0) {
+					//攻撃受けた時
+					e.attack(e,p);
+				}
 				break;
 			}
 			case 3: {
 				ran = r.nextInt(3);
 				if (ran < 1) {
 					System.out.printf("\n%sは逃げられない\n", p.name);
+					if(e.hp > 0) {
+						//攻撃受けた時
+						e.attack(e,p);
+					}
 				} else {
 					System.out.printf("\n%sは逃げ出した\n", p.name);
 					return;
@@ -37,10 +49,6 @@ public class Battle {
 			default:
 				break;
 			}
-			//攻撃受けた時
-			damage = damage(e.attack, p.defense)+ (ran = r.nextInt(5));
-			System.out.printf("\n%sは%sから%dのダメージを受けた\n", p.name, e.name, damage);
-			p.hp -= damage;
 			if (e.hp <= 0) {
 				System.out.println("\n敵を倒した！");
 				b = false;
