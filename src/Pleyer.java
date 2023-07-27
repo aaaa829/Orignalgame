@@ -2,17 +2,17 @@ import java.util.Random;
 
 public class Pleyer extends Creature {
 	int mp;
+	final int MP = 10;
 	final int HP = 100;
+	Random r = new Random();
 
 	public Pleyer(String name) {
-		Random r = new Random();
 		this.name = name;
 		this.hp = this.HP;
-		this.attack = 100 + r.nextInt(50) + 1;
-		this.defense = 50 + r.nextInt(50) + 1;
+		this.attack = 100 + this.r.nextInt(50) + 1;
+		this.defense = 50 + this.r.nextInt(50) + 1;
 		this.mp = 10;
-		System.out.printf("ようこそ%s\nステータス\n体力：%d\n攻撃力：%d\n防御力：%d\n魔力：%d\n", this.name, this.hp, this.attack,
-				this.defense, this.mp);
+		statusDisplay();
 	}
 
 	public Pleyer recovery(Pleyer p) {
@@ -31,13 +31,38 @@ public class Pleyer extends Creature {
 		} else {
 			System.out.println("MPが足りない！\n回復ができませんでした");
 		}
-
 		return p;
 	}
 
+	public int attack(Pleyer p, Enemy e) {
+		int damage = Battle.damage(p.attack, e.defense) + (this.r.nextInt(50) + 1);
+		System.out.printf("\n%sは%sに%dのダメージを与えた\n", p.name, e.name, damage);
+		e.hp -= damage;
+		return e.hp;
+	}
+
+	public boolean dead() {
+		System.out.printf("\n%sは死んだ\n", this.name);
+		return false;
+	}
+
 	public void statusDisplay() {
-		System.out.printf("\n%sのステータス\n体力：%d\n攻撃力：%d\n防御力：%d\n魔力：%d\n", this.name, this.hp, this.attack,
-				this.defense, this.mp);
+		System.out.printf("\n%sのステータス\n体力：%d\n攻撃力：%d\n防御力：%d\n魔力：%d\n",
+				this.name, this.hp, this.attack, this.defense, this.mp);
+	}
+	public boolean run(Pleyer p,Enemy e) {
+		int rand = r.nextInt(3);
+		if (rand < 2 && (!(e.name.equals("ドラゴン")))) {
+			//逃走成功
+			System.out.printf("\n%sは逃げ出した\n", p.name);
+			return false;
+		} else {
+			//逃走失敗
+			System.out.printf("\n%sは逃げられない\n", p.name);
+			//敵の攻撃時
+			p.hp = e.attack(e, p);
+			return true;
+	}
 	}
 
 }

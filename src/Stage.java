@@ -28,31 +28,43 @@ public class Stage {
 		int count = 0;
 		do {
 			Random r = new Random();
-			int ran = r.nextInt(10);
-			if (count >= 20) {
-				b = false;
-				System.out.println("これ以上奥に進めない\n帰って今回手に入れたお宝を換金します");
+			int rand = r.nextInt(10);
+			if (count >= 30) {
+				rand = r.nextInt(1);
+				if (rand == 1) {
+					System.out.println("これ以上奥に進めない\n帰って今回手に入れたお宝を換金します");
+					b = false;
+				} else {
+					System.out.println("広場に出た");
+					Sleep.sleep();
+					System.out.println("ドラゴンが現れた！");
+					Enemy d = new Enemy("ドラゴン");
+					Battle.battleMove(p, d);
+					if (d.hp <= 0) {
+						i.enemyDrop(d);
+					}
+					b = false;
+				}
 			} else {
-				if (ran <= 2) {
+				if (rand <= 2) {
 					//Battleクラス呼び出し、敵クラスの呼び出し
-					Enemy e = new Enemy("敵");
+					String[] enemynames = {"スライム","ゴブリン","スケルトン"}; 
+					Enemy e = new Enemy(enemynames[r.nextInt(enemynames.length)]);
 					Battle.battleMove(p, e);
 					if (e.hp <= 0) {
-						System.out.printf("%sから何かが出てきた...",e.name);
-						i.drop();
+						i.enemyDrop(e);
 						b = select(b, p);
 					} else if (p.hp <= 0) {
 						b = false;
 					} else {
 						b = select(b, p);
 					}
-				} else if (ran >= 3 && ran <= 4) {
+				} else if (rand >= 3 && rand <= 4) {
 					//Itemクラス呼び出し
 					i.drop();
 					b = select(b, p);
-				} else if (ran >= 5) {
+				} else if (rand >= 5) {
 					System.out.println("\n何も...ながっだ！");
-					System.out.println();
 					b = select(b, p);
 				}
 				count++;
@@ -71,8 +83,8 @@ public class Stage {
 			case 2:
 				b = false;
 				return b;
-			case 3: 
-				p.recovery(p);
+			case 3:
+				p = p.recovery(p);
 				break;
 			case 4:
 				p.statusDisplay();
