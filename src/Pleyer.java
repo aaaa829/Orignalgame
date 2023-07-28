@@ -11,6 +11,7 @@ public class Pleyer extends Creature {
 		this.hp = this.HP;
 		this.attack = 100 + this.r.nextInt(50) + 1;
 		this.defense = 50 + this.r.nextInt(50) + 1;
+		this.speed = 50 + this.r.nextInt(50) + 1;
 		this.mp = 10;
 		statusDisplay();
 	}
@@ -47,8 +48,8 @@ public class Pleyer extends Creature {
 	}
 
 	public void statusDisplay() {
-		System.out.printf("\n%sのステータス\n体力：%d\n攻撃力：%d\n防御力：%d\n魔力：%d\n",
-				this.name, this.hp, this.attack, this.defense, this.mp);
+		System.out.printf("\n%sのステータス\nHP：%d\nATK：%d\nDEF：%d\nSPD : %d\nMP：%d\n",
+				this.name, this.hp, this.attack, this.defense,this.speed, this.mp);
 	}
 	public boolean run(Pleyer p,Enemy e) {
 		int rand = r.nextInt(3);

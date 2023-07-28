@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,20 +15,27 @@ public class Item {
 	int[] counts = new int[12];
 
 	public Item() {
-		items.put("銅", 500);
-		items.put("銀", 800);
-		items.put("金", 1000);
-		items.put("プラチナ", 2000);
-		items.put("スライムの粘液", 1000);
-		items.put("スライムコア", 3000);
-		items.put("ゴブリンの牙", 1200);
-		items.put("ゴブリンの肝", 4000);
-		items.put("スケルトンの骨", 1500);
-		items.put("スケルトンの頭蓋骨", 4500);
-		items.put("竜骨", 5000);
-		items.put("竜の心臓", 10000);
+		String path = "c:/Users/0609PM/Desktop/eclips_workspace/Dungeon/csvdate/Items.csv";
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+			BufferedReader br = new BufferedReader(isr);
 
-		for (int i = 0; i < counts.length; i++) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] datas = line.split(",");
+				String name = datas[0];
+				int price = Integer.parseInt(datas[1]);
+				items.put(name, price);
+			}
+			br.close();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
+		
+		for (int i : counts) {
 			counts[i] = 0;
 		}
 	}
@@ -34,21 +45,17 @@ public class Item {
 		Sleep.sleep();
 		int r = new Random().nextInt(100);
 		if (r <= 50) {
-			this.getItem.add(items.get("銅"));
-			counts[0] += 1;
-			System.out.println("銅を手に入れた\n");
+			getItem("銅");
+			counts[0]++;
 		} else if (r >= 51 && r <= 80) {
-			this.getItem.add(items.get("銀"));
-			counts[1] += 1;
-			System.out.println("銀を手に入れた\n");
+			getItem("銀");
+			counts[1]++;
 		} else if (r >= 81 && r <= 95) {
-			this.getItem.add(items.get("金"));
-			counts[2] += 1;
-			System.out.println("金を手に入れた\n");
+			getItem("金");
+			counts[2]++;
 		} else {
-			this.getItem.add(items.get("プラチナ"));
-			counts[3] += 1;
-			System.out.println("プラチナを手に入れた\n");
+			getItem("プラチナ");
+			counts[3]++;
 		}
 
 	}
@@ -60,55 +67,53 @@ public class Item {
 		switch (e.name) {
 		case ("スライム"):
 			if (r <= 90) {
-				this.getItem.add(items.get("スライムの粘液"));
-				counts[4] += 1;
-				System.out.println("スライムの粘液を手に入れた\n");
+				getItem("スライムの粘液");
+				counts[4]++;
 			} else {
-				this.getItem.add(items.get("スライムコア"));
-				counts[5] += 1;
-				System.out.println("スライムコアを手に入れた\n");
+				getItem("スライムコア");
+				counts[5]++;
 			}
 			break;
 		case ("ゴブリン"):
 			if (r <= 90) {
-				this.getItem.add(items.get("ゴブリンの牙"));
-				counts[7] += 1;
-				System.out.println("ゴブリンの牙を手に入れた\n");
+				getItem("ゴブリンの牙");
+				counts[6]++;
 			} else {
-				this.getItem.add(items.get("ゴブリンの肝"));
-				counts[8] += 1;
-				System.out.println("ゴブリンの肝を手に入れた\n");
+				getItem("ゴブリンの肝");
+				counts[7]++;
 			}
 			break;
 		case ("スケルトン"):
 			if (r <= 90) {
-				this.getItem.add(items.get("スケルトンの骨"));
-				counts[9] += 1;
-				System.out.println("スケルトンの骨を手に入れた\n");
+				getItem("スケルトンの骨");
+				counts[8]++;
 			} else {
-				this.getItem.add(items.get("スケルトンの頭蓋骨"));
-				counts[10] += 1;
-				System.out.println("スケルトンの頭蓋骨を手に入れた\n");
+				getItem("スケルトンの頭蓋骨");
+				counts[9]++;
 			}
 			break;
 		case ("ドラゴン"):
 			if (r <= 90) {
-				this.getItem.add(items.get("竜骨"));
-				counts[11] += 1;
-				System.out.println("竜骨を手に入れた\n");
+				getItem("竜骨");
+				counts[10]++;
 			} else {
-				this.getItem.add(items.get("竜の心臓"));
-				counts[12] += 1;
-				System.out.println("竜の心臓を手に入れた\n");
+				getItem("竜の心臓");
+				counts[11]++;
 			}
-		break;
+			break;
 		}
 
 	}
-
+	
+	public void getItem(String key) { 
+		this.getItem.add(items.get(key));
+		System.out.printf("%sを手に入れた\n",key);
+	}
+	
+	
 	public int result() {
 		int result = 0;
-		if (this.getItem.size() != 0) {
+		if (this.getItem.size() > 0) {
 			for (int i : this.getItem) {
 				result += i;
 			}

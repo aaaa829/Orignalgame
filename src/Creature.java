@@ -4,6 +4,7 @@ public abstract class Creature {
 	int attack;
 	int hp;
 	int defense;
+	int speed;
 	
 	public abstract boolean dead();
 }

@@ -9,11 +9,13 @@ public class Enemy extends Creature {
 			this.hp = 300;
 			this.attack = 100 + this.r.nextInt(30);
 			this.defense = 50 + this.r.nextInt(20);
+			this.speed = 50 + this.r.nextInt(50) + 1;
 		} else {
 			this.name = name;
 			this.hp = 100;
 			this.attack = 50 + this.r.nextInt(30);
 			this.defense = 50 + this.r.nextInt(10);
+			this.speed = 30 + this.r.nextInt(50) + 1;
 		}
 	}
 
