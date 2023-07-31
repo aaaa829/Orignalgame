@@ -9,16 +9,15 @@ public class Battle {
 			if (p.speed >= e.speed) {
 				b = command(p, e);
 				//敵の攻撃時
+				b = deadJudge(p, e);
 				p.hp = e.attack(e, p);
+				b = deadJudge(p, e);
 			} else {
 				//敵の攻撃時
 				p.hp = e.attack(e, p);
+				b = deadJudge(p, e);
 				b = command(p, e);
-			}
-			if (e.hp <= 0) {
-				b = e.dead();
-			} else if (p.hp <= 0) {
-				b = p.dead();
+				b = deadJudge(p, e);
 			}
 		} while (b);
 	}
@@ -62,5 +61,15 @@ public class Battle {
 			damage = 0;
 		}
 		return damage;
+	}
+
+	public static boolean deadJudge(Pleyer p, Enemy e) {
+		boolean b = true;
+		if (e.hp <= 0) {
+			b = e.dead();
+		} else if (p.hp <= 0) {
+			b = p.dead();
+		}
+		return b;
 	}
 }

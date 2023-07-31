@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class Item {
+public class ItemManager {
 
 	Map<String, Integer> items = new LinkedHashMap<String, Integer>();
 	List<Integer> getItem = new ArrayList<Integer>();
 	int[] counts = new int[12];
 
-	public Item() {
+	public ItemManager() {
 		String path = "c:/Users/0609PM/Desktop/eclips_workspace/Dungeon/csvdate/Items.csv";
 		try {
 			FileInputStream fis = new FileInputStream(path);

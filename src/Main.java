@@ -7,7 +7,7 @@ public class Main {
 		System.out.print("名前を入力してください＞");
 		String name = s.nextLine();
 		Pleyer p = new Pleyer(name);
-		Item item = new Item();
+		ItemManager item = new ItemManager();
 
 		System.out.print("1:ゲームスタート、2:ゲームを終了する >");
 		while (true) {

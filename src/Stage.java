@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Stage {
 
-	public Stage(Pleyer p, Item i) {
+	public Stage(Pleyer p, ItemManager i) {
 
 		boolean a = true;
 		do {
@@ -23,13 +23,13 @@ public class Stage {
 		} while (a);
 	}
 
-	public void search(Pleyer p, Item i) {
+	public void search(Pleyer p, ItemManager i) {
 		boolean b = true;
 		int count = 0;
 		do {
 			Random r = new Random();
 			int rand = r.nextInt(10);
-			if (count >= 30) {
+			if (count >= 1) {
 				rand = r.nextInt(1);
 				if (rand == 1) {
 					System.out.println("これ以上奥に進めない\n帰って今回手に入れたお宝を換金します");
