@@ -11,7 +11,7 @@ public class Main {
 
 		System.out.print("1:ゲームスタート、2:ゲームを終了する >");
 		while (true) {
-			int select = s.nextInt();
+			int select = Integer.parseInt(s.nextLine());
 			switch (select) {
 			case 1:
 				System.out.println("これからダンジョンを探索して、報酬を手に入れよう");

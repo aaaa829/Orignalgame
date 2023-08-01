@@ -29,7 +29,7 @@ public class Stage {
 		do {
 			Random r = new Random();
 			int rand = r.nextInt(10);
-			if (count >= 1) {
+			if (count >= 30) {
 				rand = r.nextInt(1);
 				if (rand == 1) {
 					System.out.println("これ以上奥に進めない\n帰って今回手に入れたお宝を換金します");
@@ -46,8 +46,7 @@ public class Stage {
 					b = false;
 				}
 			} else {
-				if (rand <= 2) {
-					//Battleクラス呼び出し、敵クラスの呼び出し
+				if (rand <= 3) {
 					String[] enemynames = {"スライム","ゴブリン","スケルトン"}; 
 					Enemy e = new Enemy(enemynames[r.nextInt(enemynames.length)]);
 					Battle.battleMove(p, e);
@@ -59,12 +58,12 @@ public class Stage {
 					} else {
 						b = select(b, p);
 					}
-				} else if (rand >= 3 && rand <= 4) {
-					//Itemクラス呼び出し
+				} else if (rand >= 4 && rand <= 6) {
+					
 					i.drop();
 					b = select(b, p);
-				} else if (rand >= 5) {
-					System.out.println("\n何も...ながっだ！");
+				} else if (rand >= 7) {
+					System.out.println("\n何もない。ただの通路だ");
 					b = select(b, p);
 				}
 				count++;
@@ -75,7 +74,7 @@ public class Stage {
 	public static boolean select(boolean b, Pleyer p) {
 		while (true) {
 			System.out.printf("\n1:探索を続ける　2:探索をやめる 3:回復する(MPを消費) 4:%sのステータスを表示する>", p.name);
-			int select = new Scanner(System.in).nextInt();
+			int select =Integer.parseInt(new Scanner(System.in).next());
 			switch (select) {
 			case 1:
 				b = true;

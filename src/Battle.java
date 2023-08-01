@@ -10,14 +10,18 @@ public class Battle {
 				b = command(p, e);
 				//敵の攻撃時
 				b = deadJudge(p, e);
-				p.hp = e.attack(e, p);
+				if(p.hp >=0) {
+					p.hp = e.attack(e, p);
 				b = deadJudge(p, e);
+				}
 			} else {
 				//敵の攻撃時
 				p.hp = e.attack(e, p);
 				b = deadJudge(p, e);
+				if(p.hp >=0) {
 				b = command(p, e);
 				b = deadJudge(p, e);
+				}
 			}
 		} while (b);
 	}
