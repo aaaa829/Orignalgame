@@ -9,6 +9,7 @@ public class Stage {
 		do {
 			System.out.print("\n1:探索を開始する　2:やっぱり帰る >");
 			int s = new Scanner(System.in).nextInt();
+			System.out.println();
 			switch (s) {
 			case 1:
 				search(p, i);
@@ -31,7 +32,7 @@ public class Stage {
 			int rand = r.nextInt(10);
 			if (count >= 30) {
 				rand = r.nextInt(1);
-				if (rand == 1) {
+				if (rand < 2) {
 					System.out.println("これ以上奥に進めない\n帰って今回手に入れたお宝を換金します");
 					b = false;
 				} else {
@@ -47,7 +48,7 @@ public class Stage {
 				}
 			} else {
 				if (rand <= 3) {
-					String[] enemynames = {"スライム","ゴブリン","スケルトン"}; 
+					String[] enemynames = { "スライム", "ゴブリン", "スケルトン" };
 					Enemy e = new Enemy(enemynames[r.nextInt(enemynames.length)]);
 					Battle.battleMove(p, e);
 					if (e.hp <= 0) {
@@ -59,11 +60,12 @@ public class Stage {
 						b = select(b, p);
 					}
 				} else if (rand >= 4 && rand <= 6) {
-					
+
 					i.drop();
 					b = select(b, p);
 				} else if (rand >= 7) {
-					System.out.println("\n何もない。ただの通路だ");
+					Sleep.sleep();
+					System.out.println("何もない。ただの通路だ");
 					b = select(b, p);
 				}
 				count++;
@@ -73,8 +75,8 @@ public class Stage {
 
 	public static boolean select(boolean b, Pleyer p) {
 		while (true) {
-			System.out.printf("\n1:探索を続ける　2:探索をやめる 3:回復する(MPを消費) 4:%sのステータスを表示する>", p.name);
-			int select =Integer.parseInt(new Scanner(System.in).next());
+			System.out.print("\n1:探索を続ける　2:探索をやめる 3:HP回復する(MPを2消費) 4:ステータスを表示>");
+			int select = Integer.parseInt(new Scanner(System.in).next());
 			switch (select) {
 			case 1:
 				b = true;

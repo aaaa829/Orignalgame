@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Battle {
 
 	public static void battleMove(Pleyer p, Enemy e) {
+		Sleep.sleep();
 		System.out.printf("%sが現れた！\n", e.name);
 		boolean b = true;
 		do {
@@ -10,17 +11,25 @@ public class Battle {
 				b = command(p, e);
 				//敵の攻撃時
 				b = deadJudge(p, e);
-				if(p.hp >=0) {
+				if (b == false)
+					break;
+				if (p.hp >= 0) {
 					p.hp = e.attack(e, p);
-				b = deadJudge(p, e);
+					b = deadJudge(p, e);
+					if (b == false)
+						break;
 				}
 			} else {
 				//敵の攻撃時
 				p.hp = e.attack(e, p);
 				b = deadJudge(p, e);
-				if(p.hp >=0) {
-				b = command(p, e);
-				b = deadJudge(p, e);
+				if (b == false)
+					break;
+				if (p.hp > 0) {
+					b = command(p, e);
+					b = deadJudge(p, e);
+					if (b == false)
+						break;
 				}
 			}
 		} while (b);
@@ -30,7 +39,7 @@ public class Battle {
 		boolean b = true;
 		int counter = 0;
 		do {
-			System.out.printf("\n行動を選択してください\n1:攻撃　2:回復　3:逃走　4:%sのステータスを表示　>", p.name);
+			System.out.print("\n行動を選択してください\n1:攻撃　2:回復　3:逃走　4:ステータスを表示　 >");
 			int select = new Scanner(System.in).nextInt();
 			switch (select) {
 			case 1:

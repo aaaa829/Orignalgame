@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class ItemManager {
 
-
 	Map<String, Item> items = new LinkedHashMap<String, Item>();
 
 	public ItemManager() {
@@ -34,7 +33,7 @@ public class ItemManager {
 	}
 
 	public void drop() {
-		System.out.print("\nお宝を見つけた！");
+		System.out.print("お宝を見つけた！");
 		Sleep.sleep();
 		int r = new Random().nextInt(100);
 		if (r <= 50) {
@@ -92,9 +91,35 @@ public class ItemManager {
 		System.out.printf("%sを手に入れた\n", key);
 	}
 
-	public int result() {
+	public int result(Pleyer p) {
 		int result = 0;
-
+		//		if (p.hp > 0) {
+		//			for (String key : items.keySet()) {
+		//				if (items.get(key).number > 0) {
+		//					Item item = items.get(key);
+		//					System.out.println(key + " ・・・￥" + item.price + " ×" + item.number);
+		//					result += item.price * item.number;
+		//				}
+		//			}
+		//		} else if (p.hp <= 0) {
+		//			Random r = new Random();
+		//			String[] keys = new String[items.size()];
+		//			List<String> removekey = new ArrayList<>();
+		//			for (String key : items.keySet()) {
+		//				int i = 0;
+		//				keys[i] = key;
+		//				i++;
+		//			}
+		//			for (int i = 0; i < items.size() / 2; i++) {
+		//				for (int j = 0; j < removekey.size(); j++) {
+		//					int rand = r.nextInt(items.size());
+		//					items.remove(keys[rand]);
+		//					removekey.add(keys[rand]);
+		//				}
+		//			}
+		//			for (int k = 0; k < removekey.size(); k++) {
+		//				System.out.println(removekey.get(k) + "を落とした");
+		//			}
 		for (String key : items.keySet()) {
 			if (items.get(key).number > 0) {
 				Item item = items.get(key);
@@ -102,6 +127,7 @@ public class ItemManager {
 				result += item.price * item.number;
 			}
 		}
+		//		}
 		return result;
 	}
 }

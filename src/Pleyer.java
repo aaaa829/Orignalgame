@@ -37,21 +37,22 @@ public class Pleyer extends Creature {
 
 	public int attack(Pleyer p, Enemy e) {
 		int damage = Battle.damage(p.attack, e.defense) + (this.r.nextInt(50) + 1);
-		System.out.printf("\n%sは%sに%dのダメージを与えた\n", p.name, e.name, damage);
+		System.out.printf("%sは%sに%dのダメージを与えた\n", p.name, e.name, damage);
 		e.hp -= damage;
 		return e.hp;
 	}
 
 	public boolean dead() {
-		System.out.printf("\n%sは死んだ\n", this.name);
+		System.out.printf("\n%sはもう戦えない\n急いでダンジョンを抜け出した\n", this.name);
 		return false;
 	}
 
 	public void statusDisplay() {
 		System.out.printf("\n%sのステータス\nHP：%d\nATK：%d\nDEF：%d\nSPD : %d\nMP：%d\n",
-				this.name, this.hp, this.attack, this.defense,this.speed, this.mp);
+				this.name, this.hp, this.attack, this.defense, this.speed, this.mp);
 	}
-	public boolean run(Pleyer p,Enemy e) {
+
+	public boolean run(Pleyer p, Enemy e) {
 		int rand = r.nextInt(3);
 		if (rand < 2 && (!(e.name.equals("ドラゴン")))) {
 			//逃走成功
@@ -63,7 +64,7 @@ public class Pleyer extends Creature {
 			//敵の攻撃時
 			p.hp = e.attack(e, p);
 			return true;
-	}
+		}
 	}
 
 }

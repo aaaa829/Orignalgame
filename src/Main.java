@@ -17,9 +17,9 @@ public class Main {
 				System.out.println("これからダンジョンを探索して、報酬を手に入れよう");
 				Stage a = new Stage(p, item);
 				//Resulクラス呼び出し
-				System.out.println("\n手に入れたものを換金します。");
-				int result = item.result();
-				System.out.println("\n今回の報酬額は￥"+result+"でした");
+				System.out.println("\n持ち帰った物を換金します");
+				int result = item.result(p);
+				System.out.println("今回の報酬額は￥" + result + "でした");
 				return;
 
 			case 2:
