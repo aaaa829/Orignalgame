@@ -7,7 +7,7 @@ public class Enemy extends Creature {
 		if (name.equals("ドラゴン")) {
 			this.name = name;
 			this.hp = 300;
-			this.attack = 500 + this.r.nextInt(30);
+			this.attack = 150 + this.r.nextInt(30);
 			this.defense = 50 + this.r.nextInt(20);
 			this.speed = 50 + this.r.nextInt(50) + 1;
 		} else {

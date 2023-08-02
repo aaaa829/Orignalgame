@@ -4,7 +4,7 @@ public class Battle {
 
 	public static void battleMove(Pleyer p, Enemy e) {
 		Sleep.sleep();
-		System.out.printf("%sが現れた！\n", e.name);
+		System.out.printf("\n%sが現れた！\n", e.name);
 		boolean b = true;
 		do {
 			if (p.speed >= e.speed) {

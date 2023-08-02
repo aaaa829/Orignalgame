@@ -56,11 +56,11 @@ public class Pleyer extends Creature {
 		int rand = r.nextInt(3);
 		if (rand < 2 && (!(e.name.equals("ドラゴン")))) {
 			//逃走成功
-			System.out.printf("\n%sは逃げ出した\n", p.name);
+			System.out.printf("\n%sは逃げ出した", p.name);
 			return false;
 		} else {
 			//逃走失敗
-			System.out.printf("\n%sは逃げられない\n", p.name);
+			System.out.printf("\n%sは逃げられない", p.name);
 			//敵の攻撃時
 			p.hp = e.attack(e, p);
 			return true;
